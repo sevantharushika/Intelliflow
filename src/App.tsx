@@ -121,9 +121,9 @@ const technologyCards = [
 ]
 
 const resultMetrics = [
-  { label: 'Prototype Testing Data', value: 'Flow stability' },
-  { label: 'Prototype Testing Data', value: 'Setpoint response' },
-  { label: 'Prototype Testing Data', value: 'Wireless sync' },
+  { label: 'Flow stability', note: 'Measure variation around the target flow rate.' },
+  { label: 'Setpoint response', note: 'Record the time required to reach a new target.' },
+  { label: 'Wireless sync', note: 'Check delivery and timing of transmitted readings.' },
 ]
 
 function App() {
@@ -462,32 +462,42 @@ function App() {
           Designed. Built. <span>Tested.</span>
         </h2>
 
+        <p className="section-description">
+          Prototype measurements will be added after validation testing. The
+          chart and test categories below are placeholders, not reported results.
+        </p>
+
         <div className="results-layout">
           <div className="results-graph">
             <div className="graph-header">
-              <span>Prototype Testing Data</span>
+              <span>Flow rate over time</span>
+              <span className="graph-status">Data pending</span>
             </div>
 
             <div className="graph-layout">
-              <div className="graph-y-axis" aria-hidden="true">Flow</div>
+              <div className="graph-y-axis">Flow rate (mL/h)</div>
 
-              <div className="graph-canvas" aria-hidden="true">
+              <div className="graph-canvas" aria-label="Empty chart awaiting prototype measurements">
                 <span className="grid-line g1"></span>
                 <span className="grid-line g2"></span>
                 <span className="grid-line g3"></span>
                 <span className="grid-line g4"></span>
-                <span className="plot-line"></span>
+                <span className="graph-empty-state">Prototype measurements will appear here</span>
               </div>
 
-              <div className="graph-x-axis" aria-hidden="true">Time</div>
+              <div className="graph-x-axis">Elapsed time</div>
             </div>
           </div>
 
           <div className="metric-stack">
-            {resultMetrics.map((metric) => (
-              <div key={metric.value} className="metric-card">
-                <span>{metric.label}</span>
-                <strong>{metric.value}</strong>
+            {resultMetrics.map((test, index) => (
+              <div key={test.label} className="metric-card">
+                <div className="metric-card-header">
+                  <span>TEST 0{index + 1}</span>
+                  <span className="metric-status">Pending</span>
+                </div>
+                <h3>{test.label}</h3>
+                <p>{test.note}</p>
               </div>
             ))}
           </div>
@@ -499,17 +509,17 @@ function App() {
       <section id="team" className="section dark-section">
 
         <p className="eyebrow">
-          ENGINEERING PROJECT
+          OUR TEAM
         </p>
 
         <h2>
-          Intelli<span>Flow</span>
+          The people behind <span>IntelliFlow.</span>
         </h2>
 
         <p className="section-description">
-          A practical engineering project combining
-          embedded systems, sensors, wireless communication,
-          cloud services and application development.
+          Our team brings together expertise in embedded systems, sensing,
+          wireless communication and application development to build a more
+          connected approach to IV infusion monitoring.
         </p>
 
         <div className="team-grid">
